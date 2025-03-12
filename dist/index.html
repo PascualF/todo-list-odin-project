@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     <title>Todo-List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-div">
+            <img src="f10e41b14f2968896ed9.webp" alt="logo-tasks" class="logo-tasks">
+            <ul>
+                <li class="add-task"><button class="sidebar-btn add-task-btn">Add Task</button></li>
+                <li class="today-task"><button class="sidebar-btn">Today</button></li>
+                <li class="upcoming-task"><button class="sidebar-btn">Upcoming</button></li>
+            </ul>
+            <!-- Below we will add new projects, that will be a new list -->
+             <ul>
+                <li><button class="sidebar-btn">Default Project</button></li>
+                <li><button class="sidebar-btn">Project Example - Personal</button></li>
+             </ul>
+        </div>
+    </aside>
+    <div class="main">
+        <div class="content">
+            <h1><!-- Include if pressed Today or Upcomming of Specific Project -->Today</h1>
+        
+             <!-- This will be empty in HTML, and will be populated with Javascript-->
+            <ul class="list-tasks">
+                <li>
+                    <p><input type="checkbox" class="">First task</p>
+                    <p class="paragraph-date">Due Date here</p>
+                </li>
+                <li>
+                    <p><input type="checkbox" class="">First task</p>
+                    <p class="paragraph-date">Due Date here</p>
+                </li>
+                <li>
+                    <p><input type="checkbox" class="">Second task</p>
+                    <p class="paragraph-date">Due Date here</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
