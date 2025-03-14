@@ -21,6 +21,7 @@ const displayTask = (localStorageContent) => {
             const taskItem = JSON.parse(localStorageContent[key])
 
             const li = document.createElement("li")
+            li.setAttribute("class", "list-task-item")
             ul.appendChild(li);
 
             //get a hidden ID...
@@ -66,9 +67,7 @@ const displayTask = (localStorageContent) => {
             btnDelete.innerHTML = "Delete"
             li.appendChild(btnDelete)
         })
-    }
-
-    
+    }    
 }
 
 export default displayTask;

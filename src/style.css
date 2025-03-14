@@ -5,6 +5,7 @@ body{
     font-family: "Roboto", serif;
 }
 
+/* Styling the logo tasks */
 .logo-tasks{
     position: relative;
     width: 100px;
@@ -18,6 +19,7 @@ body{
     cursor: pointer;
 }
 
+/* Porisiotn and style the logo tasks */
 .sidebar{
     background-color: bisque;
     position:fixed;
@@ -88,6 +90,7 @@ li input{
     width: 300px;
 }
 
+
 .modal-div button,
 .modal-div input,
 .modal-div label{
@@ -111,4 +114,52 @@ li input{
 
 .p-id-date{
     display: none;
+}
+
+
+/*Background overlay*/
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Just to hide the modal by default */
+.hidden {
+    display: none;
+}
+
+/* Modal box styling */
+.modal-confirm{
+    background: rgb(189, 164, 133);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Styling the buttons*/
+.modal button{
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#confirm-remove{
+    background: red;
+    color: white;
+}
+
+#cancel-remove{
+    background: gray;
+    color: black;
 }

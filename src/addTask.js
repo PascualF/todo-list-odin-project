@@ -5,8 +5,6 @@ import CreateTask from "./createTask"
 
 const modalAddTask = () => {
 
-
-
     const h1 = document.createElement("h1")
     h1.setAttribute("class", "addTaskH1")
     h1.innerHTML = "Add Task"

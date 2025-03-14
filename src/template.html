@@ -9,18 +9,32 @@
      <title>Todo-List</title>
 </head>
 <body>
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-confirm">
+            <p class="paragraph-confirm"></p>
+            <button id="confirm-remove">Confirm</button>
+            <button id="cancel-remove">Cancel</button>
+        </div>
+    </div>
+    <div id="add-project-btn" class="modal-overlay hidden">
+        <div class="modal-confirm">
+            <p>Add project:</p>
+            
+        </div>
+
+    </div>
     <aside class="sidebar">
         <div class="sidebar-div">
             <img src="./assets/images/logo-tasks.webp" alt="logo-tasks" class="logo-tasks">
             <ul>
                 <li class="add-task"><button class="sidebar-btn add-task-btn">Add Task</button></li>
-                <li class="add-project"><button class="sidebar-btn add-task-btn">Add Project</button></li>
+                <li class="add-project"><button class="sidebar-btn add-project-btn">Add Project</button></li>
                 <li class="today-task"><button class="sidebar-btn">Today</button></li>
                 <li class="upcoming-task"><button class="sidebar-btn">Upcoming</button></li>
             </ul>
             <!-- Below we will add new projects, that will be a new list -->
              <ul>
-                <li><button class="sidebar-btn">Default Project</button></li> <!--This one will always be here -->
+                <li><button class="sidebar-btn">All recent tasks</button></li> <!--This one will always be here -->
                 <li><button class="sidebar-btn">Project Example - Personal</button></li>
              </ul>
         </div>
