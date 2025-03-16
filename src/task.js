@@ -1,9 +1,8 @@
 import setAttributes from "./setAttributes";
 
-
-const displayTask = (localStorageContent) => {
+const displayTask = (localStorageContent, projectFilter = null) => {
     const content = document.querySelector(".content");
-    //content.innerHTML = ""
+    content.innerHTML = ""
 
     if(localStorageContent.length === 0){
         content.insertAdjacentHTML('beforeend', `<h1>No tasks to show, create one...</h1>`)
@@ -13,59 +12,41 @@ const displayTask = (localStorageContent) => {
         h1.innerHTML = "Tasks"
         content.appendChild(h1)
 
-        const ul = document.createElement("ul");
-        ul.setAttribute("class", "list-tasks")
-        content.appendChild(ul);
+        const divTasks = document.createElement("div");
+        divTasks.setAttribute("class", "list-tasks")
+        content.appendChild(divTasks);
+
+
 
         Object.keys(localStorageContent).forEach((key, index) =>{
             const taskItem = JSON.parse(localStorageContent[key])
-
-            const li = document.createElement("li")
-            li.setAttribute("class", "list-task-item")
-            ul.appendChild(li);
-
-            //get a hidden ID...
-            const p_id_date = document.createElement("p")
-            setAttributes(p_id_date, {class:"p-id-date"})
-            p_id_date.innerHTML = key
-            li.appendChild(p_id_date)
-
-            // Title paragraph
-            const pTitle = document.createElement("p")
-            // checkox
-            const checkBox = document.createElement("input")
-            setAttributes(checkBox, {type:"checkbox", class:"checkbox"})
-            pTitle.innerHTML = taskItem["title"]
-
-            li.appendChild(pTitle).appendChild(checkBox) // appending Title and checkbox
-
-            // Content description
-            const pContent = document.createElement("p")
-            pContent.innerHTML = taskItem["content"]
-            li.appendChild(pContent)
-
-            // create the date
-            const pDate = document.createElement("p")
-            pDate.innerHTML = taskItem["dueDate"]
-            li.appendChild(pDate)
-            // create priority
-            const pPriority = document.createElement("p")
-            pPriority.innerHTML = taskItem["priority"]
-            li.appendChild(pPriority)
-            // Create Project
-            const pProject = document.createElement("p")
-            pProject.innerHTML = taskItem["project"]
-            li.appendChild(pProject)
-            // Create Button Edit
-            const btnEdit = document.createElement("button")
-            btnEdit.setAttribute("class", "btn-edit")
-            btnEdit.innerHTML = "Edit"
-            li.appendChild(btnEdit)
-            // Create Button Delete
-            const btnDelete = document.createElement("button")
-            btnDelete.setAttribute("class", "btn-delete")
-            btnDelete.innerHTML = "Delete"
-            li.appendChild(btnDelete)
+            if(key[0] !== 'P'){
+                const divTaskCard = document.createElement("div")
+                divTaskCard.setAttribute("class", "list-task-item")
+                divTasks.appendChild(divTaskCard);
+                if(projectFilter ===  taskItem["project"] || projectFilter === null){
+                divTaskCard.setAttribute("border", "1px solid black")
+                divTaskCard.innerHTML = `
+                    <div class="task-card">
+                        <p class="p-id-date">${key}</p>
+                        <div class="title-header">
+                            <input type="checkbox" class="checkbox">
+                            <h3 class="title-task">${taskItem["title"]}</h3>
+                        </div>
+                        <div class="task-inside-card">
+                            <p class="content-task">${taskItem["content"]}</p>
+                            <p class="dueDate-task">${taskItem["dueDate"]}</p>
+                            <p class="priority-task">${taskItem["priority"]}</p>
+                            <p class="project-task">${taskItem["project"]}</p>
+                        </div>
+                        <div class="btn-actions">
+                            <button class="btn-edit">Edit</button>
+                            <button class="btn-delete">Delete</button>
+                        </div>
+                    </div>
+                    `
+                }
+            }
         })
     }    
 }

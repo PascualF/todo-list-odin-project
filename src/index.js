@@ -1,21 +1,31 @@
 import "../src/style.css";
 import displayTask from "./task";
+import displayProject from "./project";
 import addTask from "./addTask";
+import addProject from "./addProject"
 
 // starts the server with displaying the tasks.
 displayTask(localStorage);
+displayProject(localStorage)
 
 const divContent = document.querySelector(".content")
 const addTaskBtn = document.querySelector(".add-task-btn")
 const addProjectBtn = document.querySelector(".add-project-btn")
+const listProjectContent = document.querySelector(".list-projects");
+const ulContent = document.querySelector(".list-projects")
+const sidebarContent = document.querySelector(".sidebar-div")
 
+
+// Click to add a task
 addTaskBtn.addEventListener('click', () => {
     divContent.innerHTML = "";
     addTask();
 })
 
-addProjectBtn.addEventListener('click', (event) => {
-    console.log(event.target)
+// Click to add a project
+addProjectBtn.addEventListener('click', () => {
+    listProjectContent.innerHTML = "";
+    addProject()
 })
 
 // Parent of button that exists.
@@ -40,13 +50,6 @@ divContent.addEventListener('click', async (event) => {
         }
     }
 
-    if(buttonEvent.matches('.btn-edit') || buttonEvent.closest('.btn-edit')){
-        console.log('edit button clicked')
-        const parent = buttonEvent.parentElement
-        const firstChild = parent.firstChild
-        console.log(firstChild.textContent)
-    }
-
     if(buttonEvent.matches(".checkbox") || buttonEvent.closest(".checkbox")){
         const grandParent = buttonEvent.closest(".list-task-item")
         const firstChildId = grandParent.firstChild.textContent
@@ -54,7 +57,59 @@ divContent.addEventListener('click', async (event) => {
         const buttonChecked = buttonEvent.checked
         const buttonPressed = 'checkbox'
         if(buttonChecked) {
-            console.log(confirmRemove(buttonPressed))
+            const confirmation = await confirmRemove(buttonPressed)
+            console.log(confirmation)
+            if(confirmation) {
+                console.log('delete')
+                localStorage.removeItem(firstChildId)
+                divContent.innerHTML = "";
+                displayTask(localStorage)
+            }else{
+                console.log('not delete')
+            }
+        }
+    }
+
+    if(buttonEvent.matches('.btn-edit') || buttonEvent.closest('.btn-edit')){
+        console.log('edit button clicked')
+        const parent = buttonEvent.parentElement
+        const firstChild = parent.firstChild
+        console.log(firstChild.textContent)
+    }
+})
+
+sidebarContent.addEventListener("click", (event) => {
+    const buttonEvent = event.target;
+    console.log(buttonEvent.textContent)
+
+    if(buttonEvent.textContent === 'Today') {
+        displayTask(localStorage)
+    }
+    
+    
+
+    displayTask(localStorage, buttonEvent.textContent)
+} )
+
+ulContent.addEventListener('click', async (event) => {
+    const buttonEventProject = event.target;
+
+    if(buttonEventProject.matches(".btn-delete-project") || buttonEventProject.closest(".btn-delete-project")){
+        const parentElement = buttonEventProject.parentElement;
+        const idProject = parentElement.childNodes[1].textContent
+        const buttonPressed = 'delete'
+
+        const confirm = await confirmRemove(buttonPressed)
+        console.log(confirm)
+        if(confirm) {
+            console.log('delete')
+            console.log(localStorage)
+            localStorage.removeItem(idProject)
+            const listItems = ulContent.querySelectorAll("li:not(:first-child)");
+            listItems.forEach(item => item.remove())
+            displayProject(localStorage)
+        }else{
+            console.log('not delete')
         }
     }
 })
